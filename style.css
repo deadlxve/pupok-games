@@ -1,12 +1,25 @@
 html {
     background-color: black;
+    scroll-behavior: smooth; /*Плавный скролл*/
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: black;
+    color: aliceblue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
 }
 
 /*ВИД ТЕКСТА НА ГЛАВНОЙ СТРАНИЦЕ*/
 h1 {
     color: aliceblue;
     text-align: center;
-    line-height: 1.9;
+    line-height: 1.2;
 }
 
 .Name-kompanii {
@@ -16,16 +29,120 @@ h1 {
 .Opisanie {
     font-size: 20px;  
 }
-
-
 /*КНОПКА*/
-button {
-    color: blue;
-    background-color: aqua;
+.glavnaya-knopka {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    
+    color: rgb(255, 255, 255);
+    background-color: rgb(43, 43, 46);
     text-decoration: none;
-
-    margin-left: 685px;
-    margin-top: 100px;
+    
+    padding: 30px 120px;
+    border-radius: 12px;
+    margin: 100px auto 0;  /*Центрирование*/
+    display: block;
+    width: fit-content;
+    
+    transition: all 0.5s ease;
+    cursor: pointer;
 }
-button:hover {background: rgb(232,95,76);}
-button:active {background: rgb(255,255,255);}
+.glavnaya-knopka:hover {
+    background: rgb(232, 95, 76);
+    transform: translateY(-10px);
+}
+.glavnaya-knopka:active {
+    background: rgb(255, 255, 255);
+    transform: translateY(0);
+}
+
+/*РАЗДЕЛ С ИГРАМИ*/
+#games-section {
+    min-height: 200vh; 
+    padding-top: 100px;  
+
+}
+h2 {
+    color: aliceblue;
+    text-align: center;
+    line-height: 1.9;
+    font-size: 80px;
+    
+}
+/* Контейнер для проектов */
+.projects-container {
+    display: flex;              /* ✅ Включаем Flexbox */
+    flex-direction: row;        /* ✅ Элементы в ряд (по умолчанию) */
+    justify-content: center;    /* ✅ Центровка по горизонтали */
+    align-items: center;        /* ✅ Центровка по вертикали */
+    gap: 30px;                  /* ✅ Расстояние между карточками */
+    flex-wrap: wrap;            /* ✅ Перенос на новую строку если не влезает */
+    padding: 50px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Карточка проекта */
+.project-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    background-color: #2a2a2a;
+    color: aliceblue;
+    text-decoration: none;
+    
+    padding: 30px 40px;
+    border-radius: 12px;
+    border: 2px solid transparent;
+    
+    min-width: 200px;           /* Минимальная ширина карточки */
+    transition: all 0.3s ease;
+}
+
+/* Ховер эффект на карточку */
+.project-card:hover {
+    background-color: #3a3a3a;
+    border-color: aqua;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 255, 255, 0.2);
+}
+
+/* Активное состояние (нажатие) */
+.project-card:active {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(0, 255, 255, 0.1);
+}
+
+/* Заголовок проекта */
+.project-title {
+    font-size: clamp(14px, 2vw, 18px);
+    font-weight: 600;
+    text-align: center;
+    letter-spacing: 1px;
+}
+/* Стили для страниц проектов */
+.project-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #1a1a1a;
+    color: aliceblue;
+    padding: 20px;
+    text-align: center;
+}
+
+.project-page h1 {
+    font-size: clamp(32px, 8vw, 80px);
+    margin-bottom: 20px;
+}
+
+.project-page p {
+    font-size: clamp(14px, 2vw, 18px);
+    max-width: 600px;
+    margin-bottom: 40px;
+    line-height: 1.6;
+}
