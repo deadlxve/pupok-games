@@ -69,39 +69,87 @@ h2 {
     line-height: 1.9;
     font-size: 80px;
     
+    /* Скрытое состояние */
+    opacity: 0;
+    transform: translateY(-30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
 }
-/* Контейнер для проектов */
+
+/* Видимое состояние заголовка */
+#games-section h2.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+/*Контейнер для проектов*/
 .projects-container {
-    display: flex;              /* ✅ Включаем Flexbox */
-    flex-direction: row;        /* ✅ Элементы в ряд (по умолчанию) */
-    justify-content: center;    /* ✅ Центровка по горизонтали */
-    align-items: center;        /* ✅ Центровка по вертикали */
-    gap: 30px;                  /* ✅ Расстояние между карточками */
-    flex-wrap: wrap;            /* ✅ Перенос на новую строку если не влезает */
+    display: flex;              /*Включаем Flexbox*/
+    flex-direction: row;        /*Элементы в ряд (по умолчанию)*/
+    justify-content: center;    /*Центровка по горизонтали*/
+    align-items: center;        /*Центровка по вертикали*/
+    gap: 80px;                  /*Расстояние между карточками*/
+    flex-wrap: wrap;            /*Перенос на новую строку если не влезает*/
     padding: 50px 20px;
     max-width: 1200px;
     margin: 0 auto;
+    
+    /* Скрытое состояние */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
 }
 
-/* Карточка проекта */
+/*Видимое состояние контейнера*/
+.projects-container.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+/*Карточка проекта*/
 .project-card {
     display: flex;
     align-items: center;
     justify-content: center;
-    
+
     background-color: #2a2a2a;
     color: aliceblue;
     text-decoration: none;
-    
+
     padding: 30px 40px;
     border-radius: 12px;
     border: 2px solid transparent;
+
+    min-width: 200px; /*Минимальная ширина карточки*/
+
+    /*Скрытое состояние для анимации появления*/
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease, background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
     
-    min-width: 200px;           /* Минимальная ширина карточки */
-    transition: all 0.3s ease;
+    /*Для позиционирования логотипа*/
+    position: relative;
+    overflow: visible;
 }
 
-/* Ховер эффект на карточку */
+/*Видимое состояние карточек*/
+.projects-container.visible .project-card {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/*Задержка появления для каждой карточки*/
+.projects-container.visible #lizadv {
+    transition-delay: 0.1s;
+}
+
+.projects-container.visible #rdhd {
+    transition-delay: 0.2s;
+}
+
+.projects-container.visible #pgd {
+    transition-delay: 0.3s;
+}
+
+/*Ховер эффект на карточку*/
 .project-card:hover {
     background-color: #3a3a3a;
     border-color: aqua;
@@ -109,20 +157,56 @@ h2 {
     box-shadow: 0 10px 20px rgba(0, 255, 255, 0.2);
 }
 
-/* Активное состояние (нажатие) */
+/*Ховер для конкретных проектов*/
+#lizadv:hover {
+    border-color: #8e44ad;
+    box-shadow: 0 10px 20px rgba(155, 89, 182, 0.3);
+}
+
+#rdhd:hover {
+    border-color: #e74c3c;
+    box-shadow: 0 10px 20px rgba(231, 76, 60, 0.3);
+}
+
+#pgd:hover {
+    border-color: #f39c12;
+    box-shadow: 0 10px 20px rgba(243, 156, 18, 0.3);
+}
+
+/*Активное состояние (нажатие)*/
 .project-card:active {
     transform: translateY(-2px);
     box-shadow: 0 5px 10px rgba(0, 255, 255, 0.1);
 }
 
-/* Заголовок проекта */
+/*Заголовок проекта*/
 .project-title {
     font-size: clamp(14px, 2vw, 18px);
     font-weight: 600;
     text-align: center;
     letter-spacing: 1px;
 }
-/* Стили для страниц проектов */
+
+/*Логотип проекта*/
+.project-logo {
+    position: absolute;
+    top: -250px;  /* Размещаем над карточкой */
+    left: 50%;
+    transform: translateX(-50%) scale(0.5);
+    width: 300px;
+    height: 300px;
+    object-fit: contain;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+}
+
+/*Показываем логотип при наведении на карточку*/
+.project-card:hover .project-logo {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+}
+/*Стили для страниц проектов*/
 .project-page {
     min-height: 100vh;
     display: flex;
